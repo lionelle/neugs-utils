@@ -1,38 +1,45 @@
 from gradescope_utils.autograder_utils.files import check_submitted_files
-import io, contextlib
+import io
+import contextlib
 import pycodestyle
-from typing import Union, List
-from ..neugs_utils import common_style_ignore_list
+from typing import List
 
-def check_files(student_files : List[str]) -> Union(str, None):
-    """_summary_
+
+# Developed by Mark Miller for Khoury Align SF campus use. Placed for easy access.
+
+common_style_ignore_list = [
+    'E121', # Continuation line under-indented for hanging indent
+    'E126', # Continuation line over-indented for hanging indent
+    'W291', # Trailing whitespace
+    'W503', # Line break before binary operator
+    'W504' # Line break after binary operator
+    ]
+
+
+def check_files(student_files : List[str]) -> str:
+    """checks to see if the files exist in the submission
 
     Args:
-        student_files (List[str]): _description_
-        None (_type_): _description_
+        student_files (List[str]): the names of files to check for
 
     Returns:
-        _type_: _description_
+        str: A string listing which files were missing, or the empty string if no files were missing.
     """
     missing_files = check_submitted_files(student_files)
-    if len(missing_files) != 0:
-        return "Missing required files:\n\t" + " ".join(missing_files)
-    return None
+    return "Missing required files:\n\t" + " ".join(missing_files) if len(missing_files) != 0 else ''
 
 
-def check_style(student_files: List[str], ignore =common_style_ignore_list ) -> Union(str, None):
-    """_summary_
+def check_style(student_files: List[str], ignore : List[str] = common_style_ignore_list ) -> str:
+    """Runs the files against a style checker to make sure they match the recommended python styles. 
 
     Args:
-        None (_type_): _description_
-        student_files (List[str], ignore, optional): _description_. Defaults to common_style_ignore_list )->Union(str.
+        student_files (List[str]): The student files to run pycodestyle on
+        ignore (List[str], ignore, optional): List of ignores to pass onto pycodestyle . Defaults to common_style_ignore_list
 
     Returns:
-        _type_: _description_
+        str:  string  if any style did not pass the style checker, or empty string if everything passed fine 
     """
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         style_checker = pycodestyle.StyleGuide(ignore=ignore)
-        report = style_checker.check_files(student_files)
-        if report.total_errors != 0:
-            return "\nDoes not pass the style checker:\n" + buf.getvalue()
-        return None
+        report = style_checker.check_files(student_files)        
+        return "\nDoes not pass the style checker:\n" + buf.getvalue() if report.total_errors != 0 else ''
