@@ -1,12 +1,32 @@
-import unittest
-from gradescope_utils.autograder_utils.decorators import number, weight, tags
+import os
+import sys
+up1 = os.path.abspath('../..')
+print("Add path for test purposes " + up1)
+sys.path.insert(0, up1)
 
+
+
+
+import unittest
+from gradescope_utils.autograder_utils.decorators import number, tags
+from neugs_utils.context_managers import Capturing
 from neugs_utils import tier, COMMON_ONE, COMMON_TWO, COMMON_THREE
 from random import randint
 
+def some_func():
+    val = input("this is my input")
+    print(f"this is your input: {val}" )
 
 class TestOne(unittest.TestCase):
- 
+
+    
+    @tier(COMMON_ONE)
+    def test_capture(self):
+        with Capturing("hello") as output:
+            some_func()
+        self.assertEqual(output[0], "hello")
+        
+
     @tier(COMMON_THREE)
     @tags("Learning")
     @number(3.0)
