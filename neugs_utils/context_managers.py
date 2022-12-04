@@ -23,13 +23,13 @@ class Capturing(list):
         if input is not None:
             if type(input) == str:
                 input =StringIO(input)
-            self.input = input
+            self._input = input
         else:
-            self.input = None
+            self._input = None
 
     def __enter__(self):
         self._stdout = sys.stdout
-        if self.input is not None:
+        if self._input is not None:
             self._stdin = sys.stdin
             sys.stdin = self.input
         sys.stdout = self._stringio = StringIO()
@@ -39,5 +39,5 @@ class Capturing(list):
         self.extend(self._stringio.getvalue().splitlines())
         del self._stringio    # free up some memory
         sys.stdout = self._stdout
-        if self.input is not None:
+        if self._input is not None:
             sys.stdin = self._stdin
