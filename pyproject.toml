@@ -1,0 +1,24 @@
+[build-system]
+requires = ["flit_core >=3.6,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "neugs_utils"
+authors = [{name = "Albert Lionelle", email = "lionelle@gmail.com"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+
+[project.urls]
+Source = "https://github.com/lionelle/neugs-utils"
+Documentation = ""
+
+dependencies = ["gradescope-utils>=0.3.1", "pycodestyle"]
+
+[project.optional-dependencies]
+test = [
+    "pytest >=2.7.3",
+    "pytest-cov",
+]
+doc = ["sphinx"]
