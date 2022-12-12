@@ -31,7 +31,7 @@ class Capturing(list):
         self._stdout = sys.stdout
         if self._input is not None:
             self._stdin = sys.stdin
-            sys.stdin = self.input
+            sys.stdin = self._input
         sys.stdout = self._stringio = StringIO()
         return self
 
