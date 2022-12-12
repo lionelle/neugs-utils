@@ -1,28 +1,38 @@
 [build-system]
-requires = ["flit_core >=3.6,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
 
 [project]
+dependencies = [
+    "gradescope-utils >= 0.3.1", 
+    "pycodestyle",
+]
+
 name = "neugs_utils"
-authors = [{name = "Albert Lionelle", email = "lionelle@gmail.com"}]
+description = "Alternative Grading Options for Gradescope autograder"
+version = "0.0.1a"
+authors = [{name = "Albert Lionelle", email = "lionelle+neugs-utils@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: MIT License"]
-dynamic = ["version", "description"]
-
-
-dependencies = [
-    "gradescope-utils>=0.3.1", 
-    "pycodestyle"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
 ]
+keywords = ["gradescope", "grading"]
+requires-python = ">=3.6"
 
-[project.optional-dependencies]
-test = [
-    "pytest >=2.7.3",
-    "pytest-cov",
-]
-doc = ["sphinx"]
 
 [project.urls]
 Source = "https://github.com/lionelle/neugs-utils"
 
+
+[project.optional-dependencies]
+tests = [
+  'coverage>=5.0.3',
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "neugs_utils.VERSION"}
+
+
+#[project.scripts]
+#realpython = "reader.__main__:main"
