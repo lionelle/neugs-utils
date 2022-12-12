@@ -10,11 +10,11 @@ license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 
-[project.urls]
-Source = "https://github.com/lionelle/neugs-utils"
-Documentation = ""
 
-dependencies = ["gradescope-utils>=0.3.1", "pycodestyle"]
+dependencies = [
+    "gradescope-utils>=0.3.1", 
+    "pycodestyle"
+]
 
 [project.optional-dependencies]
 test = [
@@ -22,3 +22,7 @@ test = [
     "pytest-cov",
 ]
 doc = ["sphinx"]
+
+[project.urls]
+Source = "https://github.com/lionelle/neugs-utils"
+
