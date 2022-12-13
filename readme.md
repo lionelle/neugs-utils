@@ -75,7 +75,3 @@ There are also a number of additional utility functions added in common_tests.py
 
 
 This module is still in early stages of development! 
-
-## Todo:
-* Add standards based grading / tagging
-* Add module to help with external languages (c/cpp)
