@@ -75,6 +75,7 @@ class TierMasteryJSONTestRunner(JSONTestRunner):
         Returns:
             int: the score 1 if all tests passed, or 0 if *any* test failed
         """
+        if len(tests) < 1 : return 0 # don't score empty tiers
         score = self.score_per_tier
         if self.failed is not None and self.stop_grading: 
             self.__remove_tier(tests)
@@ -98,7 +99,13 @@ class TierMasteryJSONTestRunner(JSONTestRunner):
             if "score" in test:
                 del test["score"] #not needed as there will be one at the top level
             test["name"] = f"{tier.capitalize()}: {test['name']}"
-            test["tags"] = tuple(test["tags"]["tags"]) if "tags" in test["tags"] else "" #remove the tag used for the tier 
+            
+            if "tags" in test["tags"]:
+                test["tags"] = tuple(test["tags"]["tags"]) 
+            else:
+                # remove the tag used for the tier
+                del test["tags"]
+
 
     def __remove_tier(self, tests: List) -> None:
         """
@@ -110,4 +117,4 @@ class TierMasteryJSONTestRunner(JSONTestRunner):
         """
         for test in tests:
            test["status"] = "failed"
-           test["output"] = f"Test Skipped: {self.failed} needs corrected and resubmitted first"
+           test["output"] = f"Test Skipped: {str(self.failed).capitalize()} Tier needs corrected and resubmitted first"
