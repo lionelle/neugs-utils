@@ -77,3 +77,18 @@ from .tier_grading import TierMasteryJSONTestRunner, tier, \
 __version__ = "0.0.1"
 
 
+def common_msg(msg : str, expected : Any, actual : Any) -> str:
+    """Generates a common message format of 
+       msg
+         expected: val
+         actual:  val
+
+    Args:
+        msg (str): An informative message for the student
+        expected (Any): the expected value
+        actual (Any): the actual value
+
+    Returns:
+        str: a string formatted for student view
+    """
+    return f"{msg}\n\tExpected: {expected}\n\tActual: {actual}"
