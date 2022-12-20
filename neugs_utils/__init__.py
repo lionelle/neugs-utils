@@ -91,4 +91,4 @@ def common_msg(msg : str, expected : Any, actual : Any) -> str:
     Returns:
         str: a string formatted for student view
     """
-    return f"{msg}\n\tExpected: {expected}\n\tActual: {actual}"
+    return f"{msg}\n\tExpected: {expected}\n\t  Actual: {actual}"
