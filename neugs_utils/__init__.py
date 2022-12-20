@@ -69,12 +69,12 @@ Todo:
 """
 
 
-from typing import Union, List, Any
+from typing import Union, List, Tuple, Set, Any
 from .tier_grading import TierMasteryJSONTestRunner, tier, \
     COMMON_ONE, COMMON_TWO, COMMON_THREE, COMMON_FOUR
 
 
-__version__ = "0.0.1"
+__version__ = "0.0.6"
 
 
 def common_msg(msg : str, expected : Any, actual : Any) -> str:
@@ -92,3 +92,32 @@ def common_msg(msg : str, expected : Any, actual : Any) -> str:
         str: a string formatted for student view
     """
     return f"{msg}\n\tExpected: {expected}\n\t  Actual: {actual}"
+
+
+def strip_prompt(prompt: str, outputs: Tuple[str]) -> List[str]:
+    """Removes prompts from every output line provided
+
+    Args:
+        prompt (str): the prompt to remove (needs to be exact)
+        outputs (Tuple[str]): the output line
+
+    Returns:
+        List[str]: a list of outputs with the prompts removed
+    """
+    return [output.replace(prompt, '').strip() if prompt in output else output for output in outputs]
+
+
+def strip_prompts(prompts: Set[str], outputs: Tuple[str]) -> List[str]:
+    """Removes a set of prompts from every output line as found
+
+    Args:
+        prompts (Set[str]): a list of prompts to remove
+        outputs (Tuple[str]): a list of output lines
+
+    Returns:
+        List[str]: a set of output lines with prompts removed
+    """
+    out = list(outputs)
+    for prompt in prompts:
+        out = strip_prompt(prompt, tuple(out))
+    return out
