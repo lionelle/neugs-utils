@@ -65,7 +65,7 @@ def check_or_get(file : str, override:List[str]) -> Tuple[str, str]:
 @click.option("--out", "-o", default="autograder.zip")
 @click.argument("dir")
 @click.argument("override", nargs=-1)
-def build_autograder(out: str, dir: str, override: Union[List[str], None]):
+def build_autograder(out: str, dir: str, override: List[str]):
     """Commandline tool for generating autograder_files. For the most part
     the default execution will work. Reads files in dir, addes them 
     to a zipfile (out), and can add some of the standard four autograder files

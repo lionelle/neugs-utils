@@ -10,7 +10,7 @@ dependencies = [
 
 name = "neugs_utils"
 description = "Alternative Grading Options for Gradescope autograder"
-version = "0.0.6"
+version = "0.0.7"
 authors = [{name = "Albert Lionelle", email = "lionelle+neugs-utils@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -28,4 +28,5 @@ Source = "https://github.com/lionelle/neugs-utils"
 
 
 [project.scripts]
-neugs-build = "neugs_utils.build_autograder:build_autograder"
+neugs-build = "neugs_utils.scripts.build_autograder:build_autograder"
+neugs-add = "neugs_utils.scripts.test_utils:new_test"
