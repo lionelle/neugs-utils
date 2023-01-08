@@ -6,7 +6,7 @@
 
 mkdir /autograder/source/src 
 
-cp /autograder/submission/* /autograder/source/src/.
+cp -r /autograder/submission/* /autograder/source/src/.
 
 cd /autograder/source
 
