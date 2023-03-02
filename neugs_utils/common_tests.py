@@ -12,7 +12,8 @@ common_style_ignore_list = [
     'E126', # Continuation line over-indented for hanging indent
     'W291', # Trailing whitespace
     'W503', # Line break before binary operator
-    'W504' # Line break after binary operator
+    'W504', # Line break after binary operator
+    'E501' # Relaxing the line length due to comments commonly going over 80
     ]
 
 

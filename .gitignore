@@ -2,6 +2,7 @@
 .idea
 
 ## part of the test code
+*.note
 results.json
 autograder.zip
 *.out
