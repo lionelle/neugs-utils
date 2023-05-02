@@ -74,8 +74,12 @@ def c_run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union
         command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
         try:
+            command.check_returncode()
             return {"stdout": command.stdout.decode() if command.stdout else '', 
                     "stderr": command.stderr.decode() if command.stdout else ''}
         except TimeoutError:
-            return "Timeout Error, check to make sure you don't have any infinite loops."
+            return {"stderr": "Timeout Error, check to make sure you don't have any infinite loops."}
+        except subprocess.CalledProcessError as err:
+            return {"stderr": "Error (segfault or other) - " + str(err.returncode)} 
+
         

@@ -10,7 +10,7 @@ dependencies = [
 
 name = "neugs_utils"
 description = "Alternative Grading Options for Gradescope autograder"
-version = "0.0.14"
+version = "0.0.16"
 authors = [{name = "Albert Lionelle", email = "lionelle+neugs-utils@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
