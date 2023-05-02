@@ -1,6 +1,6 @@
 """ Adds additional language support to the testing library
 """
-from typing import List
+from typing import List, Tuple, Union, Dict
 import os
 import subprocess
 
@@ -28,6 +28,7 @@ def c_compile(c_files: List[str], out_file:str = '', force:bool = False, compile
     return ''
 
 
+@DeprecationWarning
 def run_range(file:str, start : int , end: int, capture_error: bool = True, timeout: int=120) -> str:
         """Runs subprocess passing in start and end as the first two parameters 
         
@@ -52,3 +53,29 @@ def run_range(file:str, start : int , end: int, capture_error: bool = True, time
         except TimeoutError:
             return "Timeout Error"
         return ''
+
+
+def _convert_to_str_list(args: List) -> List[str]:
+    """Converts a list of arguments to a list of strings"""
+    return [str(arg) for arg in args]
+
+
+def run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union[Dict, str]:
+        """Runs subprocess passing in start and end as the first two parameters 
+        
+        Args:
+            file (str): the file / program to run
+            start (int): test id of the start test
+            end (int): test id of the end test
+            timeout (int, optional): timeout for the subprocess. Defaults to 120.
+        Returns:
+            returns a dictionary of stdout and stderr
+        """
+        command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
+                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
+        try:
+            return {"stdout": command.stdout.decode() if command.stdout else '', 
+                    "stderr": command.stderr.decode() if command.stdout else ''}
+        except TimeoutError:
+            return "Timeout Error, check to make sure you don't have any infinite loops."
+        
