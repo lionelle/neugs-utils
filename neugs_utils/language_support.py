@@ -60,7 +60,7 @@ def _convert_to_str_list(args: List) -> List[str]:
     return [str(arg) for arg in args]
 
 
-def run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union[Dict, str]:
+def c_run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union[Dict, str]:
         """Runs subprocess passing in start and end as the first two parameters 
         
         Args:
