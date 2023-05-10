@@ -76,7 +76,7 @@ def c_run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union
         try:
             command.check_returncode()
             return {"stdout": command.stdout.decode() if command.stdout else '', 
-                    "stderr": command.stderr.decode() if command.stdout else ''}
+                    "stderr": command.stderr.decode() if command.stderr else ''}
         except TimeoutError:
             return {"stderr": "Timeout Error, check to make sure you don't have any infinite loops."}
         except subprocess.CalledProcessError as err:
