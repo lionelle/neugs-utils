@@ -71,9 +71,10 @@ def c_run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union
         Returns:
             returns a dictionary of stdout and stderr
         """
-        command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
-                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
         try:
+            command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
+                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
+        
             command.check_returncode()
             return {"stdout": command.stdout.decode() if command.stdout else '', 
                     "stderr": command.stderr.decode() if command.stderr else ''}
