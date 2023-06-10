@@ -71,14 +71,23 @@ def c_run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union
         Returns:
             returns a dictionary of stdout and stderr
         """
+        proc = subprocess.Popen([file] + _convert_to_str_list(args),  stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         try:
-            command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
-                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
+            #command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
+            #                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
+           
         
-            command.check_returncode()
-            return {"stdout": command.stdout.decode() if command.stdout else '', 
-                    "stderr": command.stderr.decode() if command.stderr else ''}
+            #command.check_returncode()
+
+            stdout, stderr = proc.communicate(timeout=timeout, input=input.encode("utf-8"))
+
+            if proc.returncode != 0:
+                return {"stderr": "Error (segfault or other) - " + str(proc.returncode)}
+
+            return {"stdout": stdout.decode() if stdout else '', 
+                    "stderr": stderr.decode() if stderr else ''}
         except TimeoutError:
+            proc.kill()
             return {"stderr": "Timeout Error, check to make sure you don't have any infinite loops."}
         except subprocess.CalledProcessError as err:
             return {"stderr": "Error (segfault or other) - " + str(err.returncode)} 
