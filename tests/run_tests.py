@@ -9,6 +9,6 @@ if __name__ == '__main__':
     #print("Add path for test purposes " + up1)
     #sys.path.insert(0, up1)
    
-    suite = unittest.defaultTestLoader.discover('tests/examples')
+    suite = unittest.defaultTestLoader.discover('examples')
     with open('results.json', 'w') as f:
         TierMasteryJSONTestRunner(visibility='visible', stream=f).run(suite)
