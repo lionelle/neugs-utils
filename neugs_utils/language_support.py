@@ -4,6 +4,28 @@ from typing import List, Tuple, Union, Dict
 import os
 import subprocess
 
+
+def make(out_file:str, make_file: str = None, force:bool = False) -> Dict[str, str]:
+    """Runs make on the input file and returns the stderr and stdout
+
+    Args:
+        out_file (str): the file to save out, used for checking for existence
+        make_file (str, optional): the make file to use. Defaults to None (uses default makefile/location)
+        force (bool, optional): Force recompile even if it already exists. Defaults to False.
+
+    Returns:
+        Dict[str, str]: a dictionary with the keys "stdout" and "stderr"
+    """
+    if not os.path.isfile(out_file) or force:
+        if make_file:
+            cmd = ["make", "-f", make_file]
+        else:
+            cmd = ["make"]
+        compiled = subprocess.run(cmd, capture_output=True)
+        return {"stdout": compiled.stdout.decode(), "stderr": compiled.stderr.decode()}
+    else:
+        return {"stdout": "", "stderr": ""}
+
 def c_compile(c_files: List[str], out_file:str = '', force:bool = False, compiler="clang -Wall") -> str:
     """Compiles using the clang compiler by default. Will only compile if 
     the file doesn't already exist
