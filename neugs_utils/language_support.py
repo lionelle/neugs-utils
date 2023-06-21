@@ -4,6 +4,28 @@ from typing import List, Tuple, Union, Dict
 import os
 import subprocess
 
+
+def make(out_file:str, make_file: str = None, force:bool = False) -> Dict[str, str]:
+    """Runs make on the input file and returns the stderr and stdout
+
+    Args:
+        out_file (str): the file to save out, used for checking for existence
+        make_file (str, optional): the make file to use. Defaults to None (uses default makefile/location)
+        force (bool, optional): Force recompile even if it already exists. Defaults to False.
+
+    Returns:
+        Dict[str, str]: a dictionary with the keys "stdout" and "stderr"
+    """
+    if not os.path.isfile(out_file) or force:
+        if make_file:
+            cmd = ["make", "-f", make_file]
+        else:
+            cmd = ["make"]
+        compiled = subprocess.run(cmd, capture_output=True)
+        return {"stdout": compiled.stdout.decode(), "stderr": compiled.stderr.decode()}
+    else:
+        return {"stdout": "", "stderr": ""}
+
 def c_compile(c_files: List[str], out_file:str = '', force:bool = False, compiler="clang -Wall") -> str:
     """Compiles using the clang compiler by default. Will only compile if 
     the file doesn't already exist
@@ -71,13 +93,23 @@ def c_run(file:str, args:List = [], timeout: int=120,  input: str = '') -> Union
         Returns:
             returns a dictionary of stdout and stderr
         """
-        command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
-                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
+        proc = subprocess.Popen([file] + _convert_to_str_list(args),  stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         try:
-            command.check_returncode()
-            return {"stdout": command.stdout.decode() if command.stdout else '', 
-                    "stderr": command.stderr.decode() if command.stderr else ''}
+            #command = subprocess.run([file] + _convert_to_str_list(args), input=input.encode("utf-8"),
+            #                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,  timeout=timeout)
+           
+        
+            #command.check_returncode()
+
+            stdout, stderr = proc.communicate(timeout=timeout, input=input.encode("utf-8"))
+
+            if proc.returncode != 0:
+                return {"stderr": "Error (segfault or other) - " + str(proc.returncode)}
+
+            return {"stdout": stdout.decode() if stdout else '', 
+                    "stderr": stderr.decode() if stderr else ''}
         except TimeoutError:
+            proc.kill()
             return {"stderr": "Timeout Error, check to make sure you don't have any infinite loops."}
         except subprocess.CalledProcessError as err:
             return {"stderr": "Error (segfault or other) - " + str(err.returncode)} 

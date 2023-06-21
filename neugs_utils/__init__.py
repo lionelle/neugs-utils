@@ -72,9 +72,10 @@ Todo:
 from typing import Union, List, Tuple, Set, Any
 from .tier_grading import TierMasteryJSONTestRunner, tier, \
     COMMON_ONE, COMMON_TWO, COMMON_THREE, COMMON_FOUR
+from .CUnitTest import CUnitTest
 
 
-__version__ = "0.0.6"
+__version__ = "0.0.20"
 
 
 def common_msg(msg : str, expected : Any, actual : Any) -> str:
