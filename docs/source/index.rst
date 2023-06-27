@@ -21,6 +21,7 @@ Before adopting this feature, ensure you have downloaded all requirements :ref:`
 
    beforeyoubegin
    code
+   reference_index
 
 Indices and tables
 ==================
