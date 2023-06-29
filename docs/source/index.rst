@@ -11,9 +11,12 @@ including mastery grading and standards grading.
 Before adopting this feature, ensure you have downloaded all requirements :ref:`here <uniquename>`. 
 
 
+.. autosummary::
+   :toctree: _autosummary
+   :template: reference2.rst
+   :recursive:
 
-
-
+   neugs_utils
 
 .. toctree::
    :maxdepth: 2
@@ -22,6 +25,7 @@ Before adopting this feature, ensure you have downloaded all requirements :ref:`
    beforeyoubegin
    code
    reference_index
+   reference2
 
 Indices and tables
 ==================

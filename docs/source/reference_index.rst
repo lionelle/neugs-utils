@@ -2,5 +2,5 @@
 Automatic Documentation
 ========================
 
-.. automodule:: neugs_utils
-     :members:
+.. .. automodule:: neugs_utils
+..      :members:

@@ -14,14 +14,7 @@
 
 import os
 import sys
-
-# current_dir = os.path.dirname(__file__)
-# target_dir = os.path.abspath(os.path.join(current_dir, "../../neugs_utils"))
-# sys.path.insert(0, target_dir)
-
-#sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0, os.path.abspath('../../'))
-# sys.path.insert(0, os.path.abspath(os.path.join('..', '..')))
+sys.path.insert(0, os.path.abspath('../..'))
 
 
 # -- Project information -----------------------------------------------------
@@ -42,8 +35,12 @@ release = '0.1'
 extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
+    'sphinx.ext.coverage',
+    'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
 ]
+
+autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
