@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>neugs_utils &#8212; Gradescope 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Start Here" href="../beforeyoubegin.html" />
+    <link rel="prev" title="Welcome to Gradescope’s documentation!" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-neugs_utils">
+<span id="neugs-utils"></span><h1>neugs_utils<a class="headerlink" href="#module-neugs_utils" title="Permalink to this headline">¶</a></h1>
+<p>A simple tool set developed for non-traditional grading and other grading
+tools within the grade-scope autograder environment.</p>
+<dl>
+<dt>Features:</dt><dd><p>Tier Mastery Grading:
+Focuses on mastery based grading in grading tiers, meaning
+grades are corrected, so only the tests are passed in order based on groups. If any
+test in a group stops, so does all grading until the previous group is fixed.</p>
+<p>Common tiers are (COMMON_ONE, COMMON_TWO, COMMON_THREE, COMMON_FOUR) which is
+“Learning”, “Approaching”, “Meets”, “Exceeds”. To tag a test in a tier use the
+tier decorator. An example of a common test setup with tier grading would be as follows</p>
+<p>Example:
+from gradescope_utils.autograder_utils.decorators import number, tags
+from neugs_utils import tier, COMMON_ONE, COMMON_TWO, COMMON_THREE</p>
+<dl>
+<dt>class TestOne(unittest.TestCase):</dt><dd><p>&#64;tier(COMMON_THREE)
+&#64;tags(“Learning”)  #tags should come <em>after</em> tiers if they are used at all
+&#64;number(3.0)
+def test_random(self):</p>
+<blockquote>
+<div><p>result = 6
+for i in (6, 5, 61):</p>
+<blockquote>
+<div><p>self.assertEqual(result, i, “this is my message, that display due to TWO failing”)</p>
+</div></blockquote>
+</div></blockquote>
+<p>&#64;tier(COMMON_TWO)
+&#64;number(2.0)
+def test_approaching(self):</p>
+<blockquote>
+<div><p>result = 3
+self.assertEqual(result, 5, “this should fail”)</p>
+</div></blockquote>
+<p>&#64;tier(COMMON_TWO)
+&#64;number(2.0)
+def test_some_other_approaching(self):</p>
+<blockquote>
+<div><p>result = 5
+self.assertEqual(result, 5, “this should pass”)</p>
+</div></blockquote>
+<p>&#64;tier(COMMON_ONE)
+&#64;number(1.0)
+def test_valid(self):</p>
+<blockquote>
+<div><p>self.assertEqual(5, 5, “really!”)</p>
+</div></blockquote>
+<p>&#64;tier(COMMON_ONE)
+&#64;number(1.1)
+def test_valid2(self):</p>
+<blockquote>
+<div><p>self.assertEqual(6, 6, “really!”)</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>Given the example above, and assuming default points of 1 point per tier, the above student would earn
+1 point, and will be encouraged to submit again to completed Tier Two and Tier 3</p>
+<p>In run_test.py make sure to change JSONTestRunner to TierMasteryJSONTestRunner</p>
+<p>suite = unittest.defaultTestLoader.discover(‘tests’)
+with open(‘/autograder/results/results.json’, ‘w’) as f:</p>
+<blockquote>
+<div><p>TierMasteryJSONTestRunner(visibility=’visible’, stream=f).run(suite)</p>
+</div></blockquote>
+</dd>
+<dt>Utilities:</dt><dd><p>There are also a number of additional utility functions added in common_tests.py and context_managers.py.
+These are meant to be for utility to help with common grading tasks.</p>
+</dd>
+</dl>
+<p>This module is still in early stages of development!</p>
+<dl class="simple">
+<dt>Todo:</dt><dd><ul class="simple">
+<li><p>Add standards based grading / tagging</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gradescope</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">neugs_utils</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../beforeyoubegin.html">Start Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_index.html">Automatic Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference2.html">Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Welcome to Gradescope’s documentation!</a></li>
+      <li>Next: <a href="../beforeyoubegin.html" title="next chapter">Start Here</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Mashaido.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/_autosummary/neugs_utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
