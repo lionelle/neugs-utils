@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Gradescope's documentation!
+Welcome to Gradescope's Documentation!
 ======================================
 Welcome to the Northeastern University Gradescope Utility project, used for alternative grading schemes, 
 including mastery grading and standards grading.
