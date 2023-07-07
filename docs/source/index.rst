@@ -15,8 +15,9 @@ Before adopting this feature, ensure you have downloaded all requirements :ref:`
    :maxdepth: 2
    :caption: Contents:
 
-   beforeyoubegin
+   getting_started
    modules
+   development_getting_started
 
 
 Features

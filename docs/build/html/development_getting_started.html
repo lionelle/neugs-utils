@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Start Here &#8212; Gradescope 0.1 documentation</title>
+    <title>Contributing &#8212; Gradescope 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
@@ -17,8 +17,7 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="neugs_utils" href="modules.html" />
-    <link rel="prev" title="Welcome to Gradescope’s Documentation!" href="index.html" />
+    <link rel="prev" title="neugs_utils package" href="neugs_utils.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -34,13 +33,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="neugs_utils"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to Gradescope’s Documentation!"
+          <a href="neugs_utils.html" title="neugs_utils package"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Gradescope 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Start Here</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Contributing</a></li> 
       </ul>
     </div>  
 
@@ -49,32 +45,20 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="start-here">
-<span id="uniquename"></span><h1>Start Here<a class="headerlink" href="#start-here" title="Permalink to this heading">¶</a></h1>
-<section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
-<p>Before adopting this feature, ensure you have downloaded the requied stack below using the pip-compile command:</p>
-<dl class="simple">
-<dt>click==8.1.3</dt><dd><p># via neugs-utils (.pyproject.toml)</p>
-</dd>
-<dt>colorama==0.4.6</dt><dd><p># via click</p>
-</dd>
-<dt>gradescope-utils==0.5.0</dt><dd><p># via neugs-utils (.pyproject.toml)</p>
-</dd>
-<dt>pycodestyle==2.10.0</dt><dd><p># via neugs-utils (.pyproject.toml)</p>
-</dd>
-</dl>
-</section>
-<section id="steps-to-build-the-docs">
-<h2>Steps to Build the Docs<a class="headerlink" href="#steps-to-build-the-docs" title="Permalink to this heading">¶</a></h2>
-<p>To replicate this project, follow these steps:</p>
-<ol class="arabic simple">
-<li><p>Create and clone the Github repository <a class="reference external" href="https://github.com/Mashaido/neugs-utils/tree/main">neugs-utils</a></p></li>
-<li><p>Setup a virtual environment</p></li>
-<li><p>Install and setup Sphinx</p></li>
-<li><p>Create .rst files (corresponding to pages on your documentation) using a text editor of choice</p></li>
-<li><p>Push all files to Github</p></li>
-</ol>
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading">¶</a></h1>
+<p>If you are interested in contributing, make sure you install the development requirements using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+<p>Right now the repository is being developed by Albert Lionelle at Northeastern University. Please reach out to him for more information.</p>
+<section id="building-documentation">
+<h2>Building Documentation<a class="headerlink" href="#building-documentation" title="Permalink to this heading">¶</a></h2>
+<p>To build the documentation, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
+</pre></div>
+</div>
+<p>inside the docs folder.</p>
 </section>
 </section>
 
@@ -88,9 +72,8 @@
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Start Here</a><ul>
-<li><a class="reference internal" href="#requirements">Requirements</a></li>
-<li><a class="reference internal" href="#steps-to-build-the-docs">Steps to Build the Docs</a></li>
+<li><a class="reference internal" href="#">Contributing</a><ul>
+<li><a class="reference internal" href="#building-documentation">Building Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -98,18 +81,13 @@
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="index.html"
-                          title="previous chapter">Welcome to Gradescope’s Documentation!</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="modules.html"
-                          title="next chapter">neugs_utils</a></p>
+    <p class="topless"><a href="neugs_utils.html"
+                          title="previous chapter">neugs_utils package</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/beforeyoubegin.rst.txt"
+      <li><a href="_sources/development_getting_started.md.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -137,13 +115,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="neugs_utils"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to Gradescope’s Documentation!"
+          <a href="neugs_utils.html" title="neugs_utils package"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Gradescope 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Start Here</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Contributing</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
