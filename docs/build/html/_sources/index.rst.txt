@@ -16,6 +16,9 @@ including mastery grading and standards grading.
    :caption: Contents:
 
    getting_started
+   utilities 
+   python_lang_support
+   c_lang_support
    modules
    development_getting_started
 

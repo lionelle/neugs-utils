@@ -10,5 +10,15 @@ To install neugs-utils, run the following command:
 pip install neugs-utils
 ```
 
-## Using neugs-utils for Mastery Grading
-... start example here, describe what each part does and why, make this a walk through
+## Mastery Grading Example
+TODO: start example here, describe what each part does and why, this is based off of the stuff you have in features but with some cleanup. 
+
+
+
+### Building the Autograder.zip 
+
+TODO: add more here
+
+```bash
+neugs-build -o autograder.zip 
+```
