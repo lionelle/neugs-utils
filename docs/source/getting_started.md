@@ -17,8 +17,15 @@ TODO: start example here, describe what each part does and why, this is based of
 
 ### Building the Autograder.zip 
 
-TODO: add more here
+To build the autograder, you simply run it in the directory that contains your src and test directories. It will read and pull every file from your tests folder. You do not have to make a test runner, it will do that for you. 
 
 ```bash
 neugs-build -o autograder.zip 
 ```
+
+You will then upload the autograder.zip (or whatever you called it) to Gradescope. 
+
+
+## Combing Autograding and Manual Grading
+
+TODO: Albert to add this example using one of his courses.
