@@ -3,14 +3,16 @@ import sys
 
 #inspired by https://stackoverflow.com/questions/16571150/how-to-capture-stdout-output-from-a-python-function-call
 class Capturing(list):
-    """Context capture class, that focuses on capturing output and allowing
-    for StringIO input. 
+    """Context capture class, that focuses on capturing output and \
+    allowing for StringIO input. Output is a list that \
+    contains every line of output as an item.
 
-    output is a list is list that contains every line of output as an item.
+    For example:
+    
+    .. code-block:: python
 
-    Example:
         with Capturing("hello") as output:
-            some_func()
+            some_func() # just reprints the input
         self.assertEqual(output[0], "hello")
     """
     def __init__(self, input = None):

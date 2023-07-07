@@ -40,7 +40,7 @@ extensions = [
     'sphinx.ext.napoleon',
     "sphinx.ext.githubpages",
     'sphinx.ext.autodoc',
-    'myst-parser', # Markdown support for Sphinx
+    'myst_parser', # Markdown support for Sphinx
 ]
 
 # napoleon_google_docstring = False
