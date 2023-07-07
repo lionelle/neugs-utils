@@ -8,7 +8,7 @@ Welcome to Gradescope's Documentation!
 Welcome to the Northeastern University Gradescope Utility project, used for alternative grading schemes, 
 including mastery grading and standards grading.
 
-Before adopting this feature, ensure you have downloaded all requirements :ref:`here <uniquename>`. 
+
 
 
 .. toctree::
