@@ -61,7 +61,61 @@
 </section>
 <section id="mastery-grading-example">
 <h2>Mastery Grading Example<a class="headerlink" href="#mastery-grading-example" title="Permalink to this heading">¶</a></h2>
-<p>TODO: start example here, describe what each part does and why, this is based off of the stuff you have in features but with some cleanup.</p>
+<p>To start off, create an empty file called <code class="docutils literal notranslate"><span class="pre">example.rst</span></code>.<br />
+Our Mastery grading has four Common tiers <em>(COMMON_ONE, COMMON_TWO, COMMON_THREE, COMMON_FOUR)</em> which correspond to “Learning”, “Approaching”, “Meets”, “Exceeds”.<br />
+Add the following example of a common test setup with tier grading to your <code class="docutils literal notranslate"><span class="pre">example.rst</span></code> file.<br />
+This example assumes default points of 1 point per tier, and so the student would earn 1 point, and will be encouraged to submit again to complete Tier Two and Tier 3</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gradescope_utils.autograder_utils.decorators</span> <span class="kn">import</span> <span class="n">number</span><span class="p">,</span> <span class="n">tags</span>
+<span class="kn">from</span> <span class="nn">neugs_utils</span> <span class="kn">import</span> <span class="n">tier</span><span class="p">,</span> <span class="n">COMMON_ONE</span><span class="p">,</span> <span class="n">COMMON_TWO</span><span class="p">,</span> <span class="n">COMMON_THREE</span>
+
+<span class="k">class</span> <span class="nc">TestOne</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="nd">@tier</span><span class="p">(</span><span class="n">COMMON_THREE</span><span class="p">)</span>
+    <span class="nd">@tags</span><span class="p">(</span><span class="s2">&quot;Learning&quot;</span><span class="p">)</span>  <span class="c1">#tags should come *after* tiers if they are used at all</span>
+    <span class="nd">@number</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_random</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">61</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;this is my message, that display due to TWO failing&quot;</span><span class="p">)</span>
+
+    <span class="nd">@tier</span><span class="p">(</span><span class="n">COMMON_TWO</span><span class="p">)</span>
+    <span class="nd">@number</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_approaching</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;this should fail&quot;</span><span class="p">)</span>
+
+    <span class="nd">@tier</span><span class="p">(</span><span class="n">COMMON_TWO</span><span class="p">)</span>
+    <span class="nd">@number</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_some_other_approaching</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;this should pass&quot;</span><span class="p">)</span>
+
+    <span class="nd">@tier</span><span class="p">(</span><span class="n">COMMON_ONE</span><span class="p">)</span>
+    <span class="nd">@number</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;really!&quot;</span><span class="p">)</span>
+
+    <span class="nd">@tier</span><span class="p">(</span><span class="n">COMMON_ONE</span><span class="p">)</span>
+    <span class="nd">@number</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_valid2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;really!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ensure your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> has these extensions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.duration&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.doctest&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.coverage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.autosummary&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx.ext.githubpages&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;myst_parser&#39;</span><span class="p">,</span> <span class="c1"># Markdown support for Sphinx</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">example.rst</span></code> to the toctree directive in <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>. This tells Sphinx the hierarchy and relations between the files in your docs.</p>
+<p>For more on how to get started with Sphinx, see the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/quickstart.html">quick-start guide</a></p>
 <section id="building-the-autograder-zip">
 <h3>Building the Autograder.zip<a class="headerlink" href="#building-the-autograder-zip" title="Permalink to this heading">¶</a></h3>
 <p>To build the autograder, you simply run it in the directory that contains your src and test directories. It will read and pull every file from your tests folder. You do not have to make a test runner, it will do that for you.</p>
