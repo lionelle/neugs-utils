@@ -8,11 +8,10 @@ def add(x, y) -> float:
     """Add Function"""
     return x + y
 
-
 # Function to subtract two numbers
 def subtract(x, y) -> float:
     """Subtract Function"""
-    return x - y
+    return x - y  
 
 def multiply(x, y) -> float:
     """Multiply Function"""
@@ -20,12 +19,12 @@ def multiply(x, y) -> float:
 
 def divide(x, y) -> float:
     """Divide Function"""
-    return x * y    ### ERROR
+    return x / y   
 
 def get_client_input() -> Optional[Tuple[str, float, float]]:
     """Gets the clients input, and which function to use, in post script notation"""
     input_str = input("> ")
-    if input_str == "x":  ## ERROR
+    if input_str == "exit":  ## ERROR x
         return None
     input_list = input_str.split(" ")
 
@@ -42,11 +41,11 @@ def select_function(func_str: str) -> Optional[Callable[[float, float], float]]:
     """Selects the function to use based on the string passed in"""
     if func_str == "+":
         return add
-    elif func_str == "-":
+    elif func_str == "-": 
         return subtract
     elif func_str == "*":
         return multiply
-    elif func_str == "%":  ## ERROR
+    elif func_str == "/":  
         return divide
     else:
         print("Invalid function, please try again. Valid functions are +, -, *, /", file=sys.stderr)
