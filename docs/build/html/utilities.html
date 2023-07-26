@@ -51,12 +51,52 @@
             
   <section id="utility-scripts">
 <h1>Utility Scripts<a class="headerlink" href="#utility-scripts" title="Permalink to this heading">¶</a></h1>
+<p>The following scripts can aid in the process.</p>
 <section id="neugs-add">
 <h2>neugs-add<a class="headerlink" href="#neugs-add" title="Permalink to this heading">¶</a></h2>
-<p>TODO - this script actually needs to be better updated.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Usage:</span> <span class="pre">neugs-add</span> <span class="pre">[OPTIONS]</span> <span class="pre">OUT</span> <span class="pre">[MODULES]...</span></code></p>
+<p>Builds a new test file. Requires the file to write to, it is suggest to
+added a class, but not required, and suggested to add modules which match
+the student files  being tested. Currently defaults to a set of imports
+related to TierMastery grading.</p>
+<section id="positional-arguements">
+<h3>positional arguements<a class="headerlink" href="#positional-arguements" title="Permalink to this heading">¶</a></h3>
+<p>out (str): file to save to<br />
+cl (str): test class<br />
+modules(List[str]): files to import (usually student files)</p>
+</section>
+<section id="options">
+<h3>options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h3>
+<p>-c, –cl TEXT<br />
+–help         Show this message and exit.</p>
+</section>
 </section>
 <section id="neugs-build">
 <h2>neugs-build<a class="headerlink" href="#neugs-build" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Usage:</span> <span class="pre">neugs-build</span> <span class="pre">[OPTIONS]</span></code></p>
+<p>Command line tool for generating autograder_files. For the most part the
+default execution will work. Reads files in dir, adds them to a zipfile
+(out), and can add some of the standard four autograder files incase they
+want to be replaced</p>
+<section id="id1">
+<h3>positional arguements<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>out (str): file to save<br />
+dir (str): tests directory<br />
+cpp (bool): include c/cpp compilers<br />
+grading_type (str): mastery or standard<br />
+test_only (bool): run system but don’t write to zip file</p>
+</section>
+<section id="id2">
+<h3>options<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>-o, –out TEXT           The file name of the autograder.  [default:
+autograder.zip]<br />
+-d, –test-dir TEXT      The directory to pull tests from.  [default: tests]<br />
+–cpp                    Add C/CPP compiler to setup files.<br />
+-t, –grading-type TEXT  Grading types allowed [mastery, standard]
+[default: mastery]<br />
+–test-only              Print out feedback, but don’t build zip.<br />
+–help                   Show this message and exit.</p>
+</section>
 </section>
 </section>
 
@@ -71,8 +111,16 @@
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Utility Scripts</a><ul>
-<li><a class="reference internal" href="#neugs-add">neugs-add</a></li>
-<li><a class="reference internal" href="#neugs-build">neugs-build</a></li>
+<li><a class="reference internal" href="#neugs-add">neugs-add</a><ul>
+<li><a class="reference internal" href="#positional-arguements">positional arguements</a></li>
+<li><a class="reference internal" href="#options">options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#neugs-build">neugs-build</a><ul>
+<li><a class="reference internal" href="#id1">positional arguements</a></li>
+<li><a class="reference internal" href="#id2">options</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
