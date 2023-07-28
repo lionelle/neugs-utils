@@ -16,11 +16,18 @@ The following scripts can aid in the process.
 
   ### options
   -c, --cl TEXT    
-  --help         Show this message and exit.    
+  --help         Show this message and exit.   
+
+  ### example    
+  ```Example: neugs-add -c TestSimpleCalc tests/test_simple_calc.py```   
+
+  Will result in the creation of a new test file ```test_simple_calc.py``` under the ```test``` sub-directory.         
+  Note that ```TestSimpleCalc``` is the test class.      
+
 
   
 ## neugs-build
-```Usage: neugs-build [OPTIONS]```
+```Usage: neugs-build [OPTIONS]``` 
 
   Command line tool for generating autograder_files. For the most part the
   default execution will work. Reads files in dir, adds them to a zipfile
@@ -42,7 +49,14 @@ The following scripts can aid in the process.
   -t, --grading-type TEXT  Grading types allowed [mastery, standard]
                            [default: mastery]   
   --test-only              Print out feedback, but don't build zip.   
-  --help                   Show this message and exit.   
+  --help                   Show this message and exit.     
+
+  ### example    
+  ```Example: neugs-build tests```     
+     
+  This will create an autograder.zip with all your tests and files needed.   
+  Upload the autograder to Gradescope.    
+
 
 
 

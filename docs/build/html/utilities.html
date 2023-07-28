@@ -70,6 +70,12 @@ modules(List[str]): files to import (usually student files)</p>
 <p>-c, –cl TEXT<br />
 –help         Show this message and exit.</p>
 </section>
+<section id="example">
+<h3>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Example:</span> <span class="pre">neugs-add</span> <span class="pre">-c</span> <span class="pre">TestSimpleCalc</span> <span class="pre">tests/test_simple_calc.py</span></code></p>
+<p>Will result in the creation of a new test file <code class="docutils literal notranslate"><span class="pre">test_simple_calc.py</span></code> under the <code class="docutils literal notranslate"><span class="pre">test</span></code> sub-directory.<br />
+Note that <code class="docutils literal notranslate"><span class="pre">TestSimpleCalc</span></code> is the test class.</p>
+</section>
 </section>
 <section id="neugs-build">
 <h2>neugs-build<a class="headerlink" href="#neugs-build" title="Permalink to this heading">¶</a></h2>
@@ -97,6 +103,12 @@ autograder.zip]<br />
 –test-only              Print out feedback, but don’t build zip.<br />
 –help                   Show this message and exit.</p>
 </section>
+<section id="id3">
+<h3>example<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Example:</span> <span class="pre">neugs-build</span> <span class="pre">tests</span></code></p>
+<p>This will create an autograder.zip with all your tests and files needed.<br />
+Upload the autograder to Gradescope.</p>
+</section>
 </section>
 </section>
 
@@ -114,11 +126,13 @@ autograder.zip]<br />
 <li><a class="reference internal" href="#neugs-add">neugs-add</a><ul>
 <li><a class="reference internal" href="#positional-arguements">positional arguements</a></li>
 <li><a class="reference internal" href="#options">options</a></li>
+<li><a class="reference internal" href="#example">example</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#neugs-build">neugs-build</a><ul>
 <li><a class="reference internal" href="#id1">positional arguements</a></li>
 <li><a class="reference internal" href="#id2">options</a></li>
+<li><a class="reference internal" href="#id3">example</a></li>
 </ul>
 </li>
 </ul>
