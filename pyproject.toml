@@ -8,6 +8,7 @@ dependencies = [
     "click",
 ]
 
+
 name = "neugs_utils"
 description = "Alternative Grading Options for Gradescope autograder"
 version = "0.0.20"
@@ -22,6 +23,13 @@ keywords = ["gradescope", "grading"]
 requires-python = ">=3.6"
 
 
+[project.optional-dependencies]
+dev = [
+    "myst-parser",
+    "sphinx",
+    "sphinx-autobuild"
+]
+
 [project.urls]
 Source = "https://github.com/lionelle/neugs-utils"
 
@@ -30,3 +38,4 @@ Source = "https://github.com/lionelle/neugs-utils"
 [project.scripts]
 neugs-build = "neugs_utils.scripts.build_autograder:build_autograder"
 neugs-add = "neugs_utils.scripts.test_utils:new_test"
+

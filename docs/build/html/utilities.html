@@ -1,0 +1,198 @@
+
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Utility Scripts &#8212; Gradescope 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python Language Support" href="python_lang_support.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="python_lang_support.html" title="Python Language Support"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Gradescope 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Utility Scripts</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="utility-scripts">
+<h1>Utility Scripts<a class="headerlink" href="#utility-scripts" title="Permalink to this heading">¶</a></h1>
+<p>The following scripts can aid in the process.</p>
+<section id="neugs-add">
+<h2>neugs-add<a class="headerlink" href="#neugs-add" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Usage:</span> <span class="pre">neugs-add</span> <span class="pre">[OPTIONS]</span> <span class="pre">OUT</span> <span class="pre">[MODULES]...</span></code></p>
+<p>Builds a new test file. Requires the file to write to, it is suggest to
+added a class, but not required, and suggested to add modules which match
+the student files  being tested. Currently defaults to a set of imports
+related to TierMastery grading.</p>
+<section id="positional-arguements">
+<h3>positional arguements<a class="headerlink" href="#positional-arguements" title="Permalink to this heading">¶</a></h3>
+<p>out (str): file to save to<br />
+cl (str): test class<br />
+modules(List[str]): files to import (usually student files)</p>
+</section>
+<section id="options">
+<h3>options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h3>
+<p>-c, –cl TEXT<br />
+–help         Show this message and exit.</p>
+</section>
+<section id="example">
+<h3>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Example:</span> <span class="pre">neugs-add</span> <span class="pre">-c</span> <span class="pre">TestSimpleCalc</span> <span class="pre">tests/test_simple_calc.py</span></code></p>
+<p>Will result in the creation of a new test file <code class="docutils literal notranslate"><span class="pre">test_simple_calc.py</span></code> under the <code class="docutils literal notranslate"><span class="pre">test</span></code> sub-directory.<br />
+Note that <code class="docutils literal notranslate"><span class="pre">TestSimpleCalc</span></code> is the test class.</p>
+</section>
+</section>
+<section id="neugs-build">
+<h2>neugs-build<a class="headerlink" href="#neugs-build" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Usage:</span> <span class="pre">neugs-build</span> <span class="pre">[OPTIONS]</span></code></p>
+<p>Command line tool for generating autograder_files. For the most part the
+default execution will work. Reads files in dir, adds them to a zipfile
+(out), and can add some of the standard four autograder files incase they
+want to be replaced</p>
+<section id="id1">
+<h3>positional arguements<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>out (str): file to save<br />
+dir (str): tests directory<br />
+cpp (bool): include c/cpp compilers<br />
+grading_type (str): mastery or standard<br />
+test_only (bool): run system but don’t write to zip file</p>
+</section>
+<section id="id2">
+<h3>options<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>-o, –out TEXT           The file name of the autograder.  [default:
+autograder.zip]<br />
+-d, –test-dir TEXT      The directory to pull tests from.  [default: tests]<br />
+–cpp                    Add C/CPP compiler to setup files.<br />
+-t, –grading-type TEXT  Grading types allowed [mastery, standard]
+[default: mastery]<br />
+–test-only              Print out feedback, but don’t build zip.<br />
+–help                   Show this message and exit.</p>
+</section>
+<section id="id3">
+<h3>example<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Example:</span> <span class="pre">neugs-build</span> <span class="pre">tests</span></code></p>
+<p>This will create an autograder.zip with all your tests and files needed.<br />
+Upload the autograder to Gradescope.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Utility Scripts</a><ul>
+<li><a class="reference internal" href="#neugs-add">neugs-add</a><ul>
+<li><a class="reference internal" href="#positional-arguements">positional arguements</a></li>
+<li><a class="reference internal" href="#options">options</a></li>
+<li><a class="reference internal" href="#example">example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#neugs-build">neugs-build</a><ul>
+<li><a class="reference internal" href="#id1">positional arguements</a></li>
+<li><a class="reference internal" href="#id2">options</a></li>
+<li><a class="reference internal" href="#id3">example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="getting_started.html"
+                          title="previous chapter">Getting Started</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="python_lang_support.html"
+                          title="next chapter">Python Language Support</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/utilities.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="python_lang_support.html" title="Python Language Support"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Gradescope 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Utility Scripts</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Mashaido.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>
