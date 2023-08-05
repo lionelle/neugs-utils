@@ -10,7 +10,7 @@ import sys
 # Function to check a top out-of-bounds error on the grid
 def can_move_north(grid, row, col) -> bool:
     """Move-up Function"""
-    if grid[row-1][col] == 0:
+    if grid[row-1, col] == 0:
         print('This is the North boundary, thou shall not flee the island!')
         return False
     return True
@@ -18,7 +18,7 @@ def can_move_north(grid, row, col) -> bool:
 # Function to check a bottom out-of-bounds error on the grid
 def can_move_south(grid, row, col) -> bool:
     """Move-down Function"""
-    if grid[row+1][col] == 0:
+    if grid[row+1, col] == 0:
         print('This is the South boundary, thou shall not flee the island!')
         return False
     return True
@@ -26,7 +26,7 @@ def can_move_south(grid, row, col) -> bool:
 # Function to check a left out-of-bounds error on the grid
 def can_move_west(grid, row, col) -> bool:
     """Move-left Function"""
-    if grid[row][col-1] == 0:
+    if grid[row, col-1] == 0:
         print('This is the West boundary, thou shall not flee the island!')
         return False
     return True
@@ -34,7 +34,7 @@ def can_move_west(grid, row, col) -> bool:
 # Function to check a right out-of-bounds error on the grid
 def can_move_east(grid, row, col) -> bool:
     """Move-right Function"""
-    if grid[row][col+1] == 0:
+    if grid[row, col+1] == 0:
         print('This is the East boundary, thou shall not flee the island!')
         return False
     return True
